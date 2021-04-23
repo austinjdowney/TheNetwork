@@ -1,0 +1,47 @@
+<template>
+  <div class="row">
+    <div class="col-4 bg-light">
+      <!--inject profile colummn-->
+      <Login />
+    </div>
+    <div class="col-8">
+      <header>
+        <Navbar />
+      </header>
+      <main>
+        <div class="row">
+          <div class="col-8">
+            <router-view />
+          </div>
+          <div class="col-4">
+            <!--inject ad component-->
+          </div>
+        </div>
+      </main>
+      <footer>
+        <div class="bg-dark text-light text-center p-4">
+          <span>
+            Made with lo<i class="fab fa-angellist"></i>e by Austin. feat. Codeworks
+          </span>
+        </div>
+      </footer>
+    </div>
+  </div>
+</template>
+
+<script>
+import { computed } from 'vue'
+import { AppState } from './AppState'
+export default {
+  name: 'App',
+  setup() {
+    return {
+      appState: computed(() => AppState)
+    }
+  }
+}
+</script>
+<style lang="scss">
+@import "./assets/scss/main.scss";
+
+</style>
