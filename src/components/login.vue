@@ -37,7 +37,7 @@
       </div>
     </span>
     <div>
-      <i class=" login-icon d-flex justify-content-center fab fa-github my-4">{{ state.github }}</i>
+      <i class=" login-icon d-flex justify-content-center fab fa-github my-4">{{ github }}</i>
     </div>
     <div>
       <i class="login-icon d-flex justify-content-center fab fa-linkedin my-4"></i>

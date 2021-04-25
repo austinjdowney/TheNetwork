@@ -1,6 +1,6 @@
 <template>
   <div class="adv">
-    <img :src="state.adv" alt="adv">
+    {{ state.adv }}
   </div>
 </template>
 
@@ -12,6 +12,7 @@ import { logger } from '../utils/Logger'
 
 export default {
   name: 'Adv',
+
   setup() {
     const state = reactive({
       adv: computed(() => AppState.adv)
