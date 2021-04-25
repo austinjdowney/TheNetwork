@@ -1,5 +1,6 @@
 <template>
-  <div class="login" v-if="state.activeProfile = state.account">
+  <div class="login">
+    <!-- v-if="state.activeProfile = state.account.id"-->
     <span class="navbar-text">
       <button
         class="btn btn-outline-primary text-uppercase"
@@ -18,7 +19,7 @@
             :src="user.picture"
             alt="user photo"
             height="180"
-            class="rounded-circle mx-5"
+            class="rounded-circle d-flex justify-content-center"
           />
         </div>
         <span class="d-flex justify-content-center">{{ user.name }}</span>
@@ -58,17 +59,11 @@ import { AppState } from '../AppState'
 import { computed, reactive } from 'vue'
 export default {
   name: 'Login',
-  props: {
-    account: {
-      type: Object,
-      required: true
-    }
-  },
-
   setup() {
     const state = reactive({
       dropOpen: false,
-      profiles: computed(() => AppState.activeProfile)
+      activeProfile: computed(() => AppState.activeProfile),
+      account: computed(() => AppState.account)
     })
     return {
       state,

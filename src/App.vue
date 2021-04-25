@@ -10,11 +10,16 @@
       </header>
       <main>
         <div class="row">
-          <div class="col-8">
+          <div class="col-9">
             <router-view />
           </div>
-          <div class="col-4">
-            <!--inject ad component-->
+          <div class="col-3 bg-white">
+            <div>
+              <Adv />
+            </div>
+            <div>
+              <Adv />
+            </div>
           </div>
         </div>
       </main>
