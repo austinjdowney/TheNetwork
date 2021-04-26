@@ -2,14 +2,14 @@
   <div class="home flex-grow-1 d-flex flex-column align-items-center justify-content-center">
     <Post v-for="post in state.posts" :key="post.id" :post="post" />
   </div>
-  <div v-if="state.older">
-    <button type="button" @click="getAll(older)">
-      <i class="fas fa-backward"></i>
-    </button>
-  </div>
   <div v-if="state.newer">
     <button type="button" @click="getAll(newer)">
       <i class="fas fa-forward"></i>
+    </button>
+  </div>
+  <div v-if="state.older">
+    <button type="button" @click="getAll(older)">
+      <i class="fas fa-backward"></i>
     </button>
   </div>
 </template>
