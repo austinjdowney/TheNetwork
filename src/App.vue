@@ -1,10 +1,10 @@
-<template>
+<template class="container-fluid">
   <div class="row">
-    <div class="col-4 bg-light">
+    <div class="col-3 bg-light">
       <!--inject profile colummn-->
       <Login />
     </div>
-    <div class="col-8">
+    <div class="col-9">
       <header>
         <Navbar />
       </header>

@@ -37,7 +37,9 @@
       </div>
     </span>
     <div>
-      <i class=" login-icon d-flex justify-content-center fab fa-github my-4">{{ github }}</i>
+      <i class=" login-icon d-flex justify-content-center fab fa-github my-4">
+        <!--{{ user.github }}-->
+      </i>
     </div>
     <div>
       <i class="login-icon d-flex justify-content-center fab fa-linkedin my-4"></i>
