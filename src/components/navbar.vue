@@ -33,7 +33,7 @@
         </li>
       </ul>
       <form class="form-inline">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" v-model="state.query">
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
           Search
         </button>
@@ -44,13 +44,25 @@
 
 <script>
 import { reactive } from 'vue'
+import { profileService } from '../services/ProfileService'
 export default {
   name: 'Navbar',
   setup() {
     const state = reactive({
-      dropOpen: false
+      dropOpen: false,
+      query: ''
     })
-    return { state }
+    return {
+      state,
+      async search() {
+        try {
+          await profileService.getResults(state.query)
+          state.query = ''
+        } catch (error) {
+          Notification.toast('Error: ' + error, ' danger')
+        }
+      }
+    }
   }
 }
 </script>

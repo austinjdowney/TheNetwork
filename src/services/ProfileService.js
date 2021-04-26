@@ -21,10 +21,11 @@ class ProfileService {
     const res = await api.post('api/profiles', data)
     router.push({ name: 'ProfilePage', params: { id: res.data.id } })
   }
-//    async getProfilesByQuery(query) {
-//   const res = await api.get(query)
-//  AppState.results = res.data.results.map(p => new Result(p))
-//    }
-// }
+
+  // async getResults(query) {
+  //   const res = await api.get(query)
+  //   AppState.results = res.data.results.map(p => new Query(p))
+  // }
 }
+
 export const profileService = new ProfileService()
