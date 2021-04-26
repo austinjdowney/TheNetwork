@@ -81,15 +81,16 @@ export default {
     })
 
     return {
+      route,
       state,
       async create() {
         try {
-          await profileService.create(state.newPost)
+          await profileService.create(state.data)
           state.newPost = {}
           Notification.toast('Successfully Created Post', 'success')
         } catch (error) {
           logger.log(error)
-          Notification.toast('Error: ' + error, 'error')
+          Notification.toast('Error: ' + error, 'danger')
         }
       },
       async editPost() {

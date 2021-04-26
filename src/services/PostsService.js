@@ -1,5 +1,6 @@
 import { AppState } from '../AppState'
 import { api } from './AxiosService'
+import router from '../router'
 
 class PostsService {
   async getAll() {
@@ -7,6 +8,11 @@ class PostsService {
     AppState.posts = res.data.posts
     AppState.older = res.data.older
     AppState.newer = res.data.newer
+  }
+
+  async createPost(data) {
+    const res = await api.post('api/posts', data)
+    router.push({ name: 'ProfilePage', params: { id: res.data.id } })
   }
 
   async likePost(id) {

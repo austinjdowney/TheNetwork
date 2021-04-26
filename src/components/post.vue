@@ -66,14 +66,14 @@ export default {
         try {
           await postsService.likePost(post.id)
         } catch (error) {
-          Notification.toast('Error: ' + error, ' error')
+          Notification.toast('Error: ' + error, ' danger')
         }
       },
       async deletePost(post) {
         try {
           await postsService.deletePost(post.id)
         } catch (error) {
-          Notification.toast('Error: ' + error, ' error')
+          Notification.toast('Error: ' + error, ' danger')
         }
       }
     }
