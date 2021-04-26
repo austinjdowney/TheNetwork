@@ -25,8 +25,8 @@ export default {
   setup() {
     const state = reactive({
       posts: computed(() => AppState.posts),
-      previous: computed(() => AppState.previous),
-      next: computed(() => AppState.next)
+      older: computed(() => AppState.older),
+      newer: computed(() => AppState.newer)
     })
     onMounted(async() => {
       try {
