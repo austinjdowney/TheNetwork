@@ -1,5 +1,5 @@
 <template>
-  <div class="profile-page text-center" v-if="state.activeProfile=== state.account.id">
+  <div class="profile-page text-center" v-if="state.activeProfile=== state.account">
     <!-- Render the active profile picture and name -->
     <div class="card col-10">
       <div class="card-header d-flex">
