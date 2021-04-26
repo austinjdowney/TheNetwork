@@ -69,7 +69,7 @@ export default {
       async likePost(post) {
         try {
           await postsService.likePost(post.id)
-          Notification.toast('Successfully Created Post', 'success')
+          Notification.toast('Successfully Liked Post', 'success')
         } catch (error) {
           Notification.toast('Error: ' + error, ' danger')
         }
