@@ -2,6 +2,16 @@
   <div class="home flex-grow-1 d-flex flex-column align-items-center justify-content-center">
     <Post v-for="post in state.posts" :key="post.id" :post="post" />
   </div>
+  <div v-if="state.previous">
+    <button type="button" @click="getAll(previous)">
+      <i class="fas fa-backward"></i>
+    </button>
+  </div>
+  <div v-if="state.next">
+    <button type="button" @click="getAll(next)">
+      <i class="fas fa-forward"></i>
+    </button>
+  </div>
 </template>
 
 <script>
@@ -14,7 +24,9 @@ export default {
   name: 'Home',
   setup() {
     const state = reactive({
-      posts: computed(() => AppState.posts)
+      posts: computed(() => AppState.posts),
+      previous: computed(() => AppState.previous),
+      next: computed(() => AppState.next)
     })
     onMounted(async() => {
       try {

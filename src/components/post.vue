@@ -17,7 +17,8 @@
       <div class="col-md-9">
         <div>
           <p>{{ post.creator.name }}</p>
-          <p> {{ post.createdAt }}</p>
+          <p>{{ post.createdAt }}</p>
+          <!--<p> DateTime.now({{ post.createdAt }})</p>-->
         </div>
         <div class="card-body">
           <div>
@@ -52,6 +53,8 @@
 <script>
 import { postsService } from '../services/PostsService'
 import Notification from '../utils/Notification'
+// import { DateTime, LocalZone } from 'luxon'
+
 export default {
   name: 'Post',
   props: {
@@ -61,6 +64,7 @@ export default {
     }
   },
   setup() {
+    // DateTime.now(LocalZone)
     return {
       async likePost(post) {
         try {

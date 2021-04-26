@@ -24,7 +24,12 @@
         </div>
       </main>
       <footer>
-        <div class="bg-dark text-light text-center p-4">
+        <div class="
+                  bg-dark
+                  text-light
+                  text-center
+                  p-4"
+        >
           <span>
             Made with lo<i class="fab fa-angellist"></i>e by Austin. feat. Codeworks
           </span>
