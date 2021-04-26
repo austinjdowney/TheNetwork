@@ -100,7 +100,7 @@ export default {
           Notification.toast('Successfully Updated Post', 'success')
         } catch (error) {
           logger.log(error)
-          Notification.toast('Error: ' + error, 'error')
+          Notification.toast('Error: ' + error, 'danger')
         }
       }
     }
