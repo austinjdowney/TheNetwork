@@ -3,12 +3,12 @@
     <Post v-for="post in state.posts" :key="post.id" :post="post" />
   </div>
   <div v-if="state.previous">
-    <button type="button" @click="getAll(previous)">
+    <button type="button" @click="getAll(older)">
       <i class="fas fa-backward"></i>
     </button>
   </div>
   <div v-if="state.next">
-    <button type="button" @click="getAll(next)">
+    <button type="button" @click="getAll(newer)">
       <i class="fas fa-forward"></i>
     </button>
   </div>
