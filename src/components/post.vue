@@ -11,6 +11,7 @@
             height="40"
             class="rounded-circle"
           />
+          <i v-if="post.creator.graduated" class="fas fa-user-graduate"></i>
         </router-link>
       </div>
       <div class="col-md-9">
@@ -19,20 +20,38 @@
           <p> {{ post.createdAt }}</p>
         </div>
         <div class="card-body">
+          <div>
+            <img :src="post.imgUrl" class="w-100" alt="">
+          </div>
           <p class="card-text">
             {{ post.body }}
           </p>
         </div>
       </div>
-      <span>
-        <i class="far fa-heart"></i>
-        {{ post.likes.length }}
-      </span>
+      <div class="ml-3">
+        <button type="button"
+                class="btn btn-outline-danger"
+                @click="likePost(post)"
+        >
+          <i
+            class="far fa-heart"
+          >
+          </i>
+          {{ post.likes.length }}
+        </button>
+      </div>
+      <div class="post--buttons d-flex justify-content-between pt-3">
+        <button class="shadow" @click="deletePost(post)">
+          <i class="fas fa-trash-alt"></i>
+        </button>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import { postsService } from '../services/PostsService'
+import Notification from '../utils/Notification'
 export default {
   name: 'Post',
   props: {
@@ -42,7 +61,22 @@ export default {
     }
   },
   setup() {
-    return {}
+    return {
+      async likePost(post) {
+        try {
+          await postsService.likePost(post.id)
+        } catch (error) {
+          Notification.toast('Error: ' + error, ' error')
+        }
+      },
+      async deletePost(post) {
+        try {
+          await postsService.deletePost(post.id)
+        } catch (error) {
+          Notification.toast('Error: ' + error, ' error')
+        }
+      }
+    }
   },
   components: {}
 }

@@ -1,9 +1,9 @@
 import { AppState } from '../AppState'
 import { logger } from '../utils/Logger'
 import { api } from './AxiosService'
-
+import router from '../router'
 class ProfileService {
-  async getProfileById(id) {
+  async getProfile(id) {
     try {
       const res = await api.get('api/profiles/' + id)
       AppState.activeProfile = res.data
@@ -12,20 +12,18 @@ class ProfileService {
     }
   }
 
-  async getAllPosts() {
-    const res = await api.get('api/posts')
-    AppState.posts = res.data.posts
-  }
-
   async getMyPosts() {
     const res = await api.get(`api/posts?creatorId=${AppState.account.id}`)
     AppState.myPosts = res.data
   }
 
-//  async getProfilesByQuery(query) {
-//    const res = await api.get(query)
-//    AppState.results = res.data.results.map(p => new Result(p))
-//  }
+  async create(data) {
+    const res = await api.post('api/profiles', data)
+    router.push({ name: 'ProfilePage', params: { id: res.data.id } })
+    //  async getProfilesByQuery(query) {
+    //    const res = await api.get(query)
+    //    AppState.results = res.data.results.map(p => new Result(p))
+    //  }
+  }
 }
-
 export const profileService = new ProfileService()

@@ -5,7 +5,9 @@
       <div class="card-header d-flex">
         <!--insert cover image-->
       </div>
-
+      <!-- <div>
+        <CreatePostForm />
+      </div> -->
       <div class="card-body">
         <img class="rounded-circle" :src="state.activeProfile.picture" alt="Creator image">
         <div class="ml-3 d-flex flex-column justify-content-center">
@@ -74,7 +76,7 @@ export default {
       // await accountService.getByAccountId(route.params.id)
       // searching for certain profiles?
       // await profileService.getProfilesByQuery(route.params)
-      await profileService.getProfileById(route.params.id)
+      await profileService.getProfile(route.params.id)
       // await profileService.getAllPosts(route.params.id)
     })
 

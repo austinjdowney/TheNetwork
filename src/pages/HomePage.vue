@@ -6,7 +6,7 @@
 
 <script>
 import { computed, onMounted, reactive } from 'vue'
-import { profileService } from '../services/ProfileService'
+import { postsService } from '../services/PostsService'
 import { AppState } from '../AppState'
 import { logger } from '../utils/Logger'
 
@@ -18,7 +18,7 @@ export default {
     })
     onMounted(async() => {
       try {
-        await profileService.getAllPosts()
+        await postsService.getAll()
       } catch (error) {
         logger.log(error)
       }
