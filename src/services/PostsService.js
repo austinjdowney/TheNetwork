@@ -1,6 +1,5 @@
 import { AppState } from '../AppState'
 import { api } from './AxiosService'
-import router from '../router'
 
 class PostsService {
   async getAll() {
@@ -12,7 +11,9 @@ class PostsService {
 
   async createPost(newPost) {
     const res = await api.post('api/posts', newPost)
-    router.push({ name: 'ProfilePage', params: { id: res.data.id } })
+    const res2 = await api.get(`api/profiles/${res.data.accountId}/posts`)
+    AppState.activePosts = res2.data.post
+    this.getAll()
   }
 
   async likePost(id) {
