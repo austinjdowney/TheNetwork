@@ -15,43 +15,35 @@
           class="dropdown-toggle"
           @click="state.dropOpen = !state.dropOpen"
         >
+          <!-- <router-link :to="{name: 'ProfilePage', params: {id:state.acount.id}>-->
           <img
-            :src="user.picture"
+            :src="
+              user.picture"
             alt="user photo"
             height="180"
             class="rounded-circle d-flex justify-content-center"
           />
+        <!--  </router-link>-->
         </div>
         <span class="d-flex justify-content-center">{{ user.name }}</span>
-        <div
-          class="dropdown-menu p-0 list-group w-100"
-          :class="{ show: state.dropOpen }"
-          @click="state.dropOpen = false"
-        >
-          <router-link :to="{ name: 'Account' }">
-            <div class="list-group-item list-group-item-action hoverable">
-              Account
-            </div>
-          </router-link>
-        </div>
       </div>
     </span>
-    <div>
-      <i class=" login-icon d-flex justify-content-center fab fa-github my-4">
-        <!--{{ user.github }}-->
-      </i>
-    </div>
-    <div>
-      <i class="login-icon d-flex justify-content-center fab fa-linkedin my-4"></i>
-    </div>
-    <div>
-      <button type="button"
-              class="list-group-item list-group-item-action hoverable btn btn-outline-success btn-sm d-flex justify-content-center mb-3"
-              @click="logout"
-      >
-        logout
-      </button>
-    </div>
+  </div>
+  <div>
+    <i class=" login-icon d-flex justify-content-center fab fa-github my-4">
+      <!--{{ user.github }}-->
+    </i>
+  </div>
+  <div>
+    <i class="login-icon d-flex justify-content-center fab fa-linkedin my-4"></i>
+  </div>
+  <div>
+    <button type="button"
+            class="list-group-item list-group-item-action hoverable btn btn-outline-success btn-sm d-flex justify-content-center mb-3"
+            @click="logout"
+    >
+      logout
+    </button>
   </div>
 </template>
 

@@ -10,8 +10,8 @@ class PostsService {
     AppState.newer = res.data.newer
   }
 
-  async createPost(data) {
-    const res = await api.post('api/posts', data)
+  async createPost(newPost) {
+    const res = await api.post('api/posts', newPost)
     router.push({ name: 'ProfilePage', params: { id: res.data.id } })
   }
 
@@ -21,8 +21,8 @@ class PostsService {
   }
 
   async deletePost(id) {
-    await api.delete(`api/posts/${id}`)
-    this.getAll()
+    await api.delete('api/posts/' + id)
+    AppState.posts = AppState.posts.filter(p => p.id !== id)
   }
 }
 export const postsService = new PostsService()

@@ -27,12 +27,12 @@
           </router-link>
         </li>
         <li class="nav-item">
-          <router-link :to="{ name: 'ProfilePage', params:{id:id}}" class="nav-link">
+          <router-link :to="{ name: 'ProfilePage', params:{id:state.account.id}}" class="nav-link">
             ProfilePage
           </router-link>
         </li>
       </ul>
-      <form class="form-inline">
+      <form class="form-inline" @submit.prevent="search">
         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" v-model="state.query">
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
           Search
@@ -43,14 +43,16 @@
 </template>
 
 <script>
-import { reactive } from 'vue'
+import { reactive, computed } from 'vue'
+import { AppState } from '../AppState'
 import { profileService } from '../services/ProfileService'
 export default {
   name: 'Navbar',
   setup() {
     const state = reactive({
       dropOpen: false,
-      query: ''
+      query: '',
+      account: computed(() => AppState.account)
     })
     return {
       state,

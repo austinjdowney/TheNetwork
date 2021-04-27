@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-md-3" v-if="post.creator">
         <router-link
-          :to="{name:'ProfilePage', params: {id:post.id}}"
+          :to="{name:'ProfilePage', params: {id:post.creatorId}}"
         >
           <img
             :src="post.creator.picture"
@@ -21,15 +21,15 @@
           <!--<p> DateTime.now({{ post.createdAt }})</p>-->
         </div>
         <div class="card-body">
-          <div>
-            <img :src="post.imgUrl" class="w-100" alt="">
-          </div>
           <p class="card-text">
             {{ post.body }}
           </p>
+          <div>
+            <img v-if="post.imgUrl" :src="post.imgUrl" class="w-100" alt="">
+          </div>
         </div>
       </div>
-      <div class="ml-3">
+      <div class="m-3 text-right">
         <button type="button"
                 class="btn btn-outline-danger"
                 @click="likePost(post)"
@@ -42,7 +42,7 @@
         </button>
       </div>
       <div class="post--buttons d-flex justify-content-between pt-3">
-        <button class="shadow" @click="deletePost(post)">
+        <button class="shadow" v-if="state.account && state.account.id == post.creatorId" @click="deletePost">
           <i class="fas fa-trash-alt"></i>
         </button>
       </div>
@@ -51,6 +51,8 @@
 </template>
 
 <script>
+import { computed, reactive } from 'vue'
+import { AppState } from '../AppState'
 import { postsService } from '../services/PostsService'
 import Notification from '../utils/Notification'
 // import { DateTime, LocalZone } from 'luxon'
@@ -63,9 +65,13 @@ export default {
       required: true
     }
   },
-  setup() {
-    // DateTime.now(LocalZone)
+  setup(props) {
+    const state = reactive({
+      account: computed(() => AppState.account)
+    })
+
     return {
+      state,
       async likePost(post) {
         try {
           await postsService.likePost(post.id)
@@ -74,9 +80,9 @@ export default {
           Notification.toast('Error: ' + error, ' danger')
         }
       },
-      async deletePost(post) {
+      async deletePost() {
         try {
-          await postsService.deletePost(post.id)
+          await postsService.deletePost(props.post.id)
         } catch (error) {
           Notification.toast('Error: ' + error, ' danger')
         }

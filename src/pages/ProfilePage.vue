@@ -1,5 +1,5 @@
 <template>
-  <div class="profile-page text-center" v-if="state.activeProfile=== state.account">
+  <div class="profile-page text-center" v-if="state.activeProfile && state.activeProfile.id === state.account.id">
     <!-- Render the active profile picture and name -->
     <div class="card col-10">
       <div class="card-header d-flex">
@@ -20,7 +20,7 @@
         </div>
       </div>
     </div>
-    <form @submit.prevent="create" v-if="state.user.isAuthenticated && state.activeProfile.id === state.account.id">
+    <form @submit.prevent="createPost" v-if="state.user.isAuthenticated && state.account.id === route.params.id">
       <div class="form-group">
         <input type="text"
                class="form-control"
@@ -46,7 +46,7 @@
     </form>
     <h2>My Projects</h2>
     <div class="row">
-      <Post v-for="myPost in state.myPosts" :key="myPost.id" :my-post="myPost" />
+      <Post v-for="post in state.activePosts" :key="post.id" :post="post" />
     </div>
   </div>
 </template>
@@ -59,6 +59,8 @@ import { AppState } from '../AppState'
 import { useRoute } from 'vue-router'
 import Notification from '../utils/Notification'
 import { logger } from '../utils/Logger'
+import { postsService } from '../services/PostsService'
+
 export default {
   name: 'ProfilePage',
   setup() {
@@ -83,9 +85,9 @@ export default {
     return {
       route,
       state,
-      async create() {
+      async createPost() {
         try {
-          await profileService.create(state.data)
+          await postsService.createPost(state.newPost)
           state.newPost = {}
           Notification.toast('Successfully Created Post', 'success')
         } catch (error) {
