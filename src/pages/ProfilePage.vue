@@ -79,7 +79,7 @@ export default {
       // searching for certain profiles?
       // await profileService.getProfilesByQuery(route.params)
       await profileService.getProfile(route.params.id)
-      // await profileService.getAllPosts(route.params.id)
+      await profileService.getMyPosts(route.params.id)
     })
 
     return {

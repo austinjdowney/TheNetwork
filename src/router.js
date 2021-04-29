@@ -14,8 +14,8 @@ const routes = [
   {
     path: '/api/profiles/:id',
     name: 'ProfilePage',
-    component: loadPage('ProfilePage')
-    // beforeEnter: authGuard
+    component: loadPage('ProfilePage'),
+    beforeEnter: authGuard
   },
   {
     path: '/account',

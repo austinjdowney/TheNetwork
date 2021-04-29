@@ -1,7 +1,7 @@
 import { AppState } from '../AppState'
 import { logger } from '../utils/Logger'
 import { api } from './AxiosService'
-import router from '../router'
+// import router from '../router'
 class ProfileService {
   async getProfile(id) {
     try {
@@ -13,13 +13,15 @@ class ProfileService {
   }
 
   async getMyPosts() {
+    debugger
     const res = await api.get(`api/posts?creatorId=${AppState.account.id}`)
-    AppState.myPosts = res.data
+    AppState.activePosts = res.data
   }
 
   async create() {
     const res = await api.post('api/posts')
-    router.push({ name: 'ProfilePage', params: { id: res.data.id } })
+    // router.push({ name: 'ProfilePage', params: { id: res.data.id } })
+    AppState.posts = [...AppState.posts, res.data]
   }
 
   async getResults(query) {
